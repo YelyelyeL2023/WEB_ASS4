@@ -18,10 +18,11 @@ const calculate = () => {
         .filter(skill => skill.checked)
         .reduce((acc, skill) => acc + Number(skill.value), 0);
 
-    const reputation = Array.from(document.getElementsByClassName("reputation"))
-        .reduce((acc, rep) => rep.checked ? acc * Number(rep.value) : acc, 1);
-
-    price = price * education * networth * age * reputation + caste + skills;
+    const badParents = document.getElementById("g_par").checked ? Number(document.getElementById("g_par").value) : 1;
+    const badCharacter = document.getElementById("g_char").checked ? Number(document.getElementById("g_char").value) : 1;
+    const badPerson = document.getElementById("g_per").checked ? Number(document.getElementById("g_per").value) : 0;
+    
+    price = price * education * networth * age * badParents * badCharacter + badPerson + caste + skills;
 
     const loveLetter = document.getElementById("loveLetter").value;
 
